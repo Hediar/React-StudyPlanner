@@ -47,7 +47,7 @@ function Inputcomment(props) {
           <CommentNameInput
             value={inputUser}
             onChange={inputUserHandler}
-            maxlength="10"
+            maxLength="10"
             placeholder="이름을 입력해주세요"
           />
         </div>

@@ -4,10 +4,43 @@ import useInput from "../hooks/useInput";
 import { styled } from "styled-components";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { useMutation, useQueryClient } from "react-query";
+import { signUp } from "../api/users";
+import { useNavigate } from "react-router-dom";
 
 function SignUp() {
   const [id, onChangeIdHandler, setId] = useInput();
   const [pw, onChangePwHandler, setPw] = useInput();
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+  const mutation = useMutation(signUp, {
+    onSuccess: () => {},
+  });
+
+  const signUpButtonHandler = () => {
+    if (!id.trim()) {
+      return alert("id를 입력해주세요!");
+    } else if (!pw.trim()) {
+      return alert("pw를 입력해주세요!");
+    }
+    const newUser = {
+      id: id,
+      password: pw,
+    };
+    mutation.mutate(newUser);
+
+    if (mutation.isSuccess) {
+      alert("회원가입 되었습니다!");
+      navigate("/signin");
+      return;
+    }
+    if (mutation.isError) {
+      if (mutation.error.response.status === 401) {
+        return alert(mutation.error.response.data.message);
+      }
+      return console.log(mutation.error.message);
+    }
+  };
   return (
     <div>
       <Header />
@@ -24,7 +57,7 @@ function SignUp() {
             onChange={onChangePwHandler}
             placeholder="비밀번호"
           />
-          <Button>회원가입</Button>
+          <Button onClick={signUpButtonHandler}>회원가입</Button>
         </SignupBox>
       </SignupWrapper>
       <Footer />
@@ -48,7 +81,8 @@ const SignupBox = styled.div`
 `;
 
 export const InputBox = styled.input`
-  padding: 5px;
+  padding: 10px;
+  margin: 10px;
   outline: none;
   border: 1px solid #c6c6c6;
   margin-bottom: 10px;

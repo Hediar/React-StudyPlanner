@@ -60,7 +60,7 @@ function Post() {
             value={title}
             onChange={onChangeTitleHandler}
             placeholder="제목"
-            maxlength="20"
+            maxLength="20"
           />
         </div>
         <div>
@@ -68,7 +68,7 @@ function Post() {
             value={writer}
             onChange={onChangeWriterHandler}
             placeholder="이름"
-            maxlength="10"
+            maxLength="10"
           />
         </div>
         <div>

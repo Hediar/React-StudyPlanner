@@ -6,6 +6,7 @@ const signUp = async (user) => {
     `${process.env.REACT_APP_AUTAPI_URL}register`,
     user
   );
+  //   console.log("회원가입", response);
   return response;
 };
 
@@ -15,7 +16,7 @@ const signIn = async (user) => {
     `${process.env.REACT_APP_AUTAPI_URL}login`,
     user
   );
-  return response;
+  console.log("로그인", response);
 };
 
 // 유저 인증 확인
@@ -24,4 +25,4 @@ const checkAut = async () => {
   return response;
 };
 
-export {};
+export { signUp, signIn, checkAut };
