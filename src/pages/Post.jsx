@@ -105,7 +105,7 @@ const PostBox = styled.div`
   justify-content: center;
 `;
 
-const PostInputTitle = styled.input`
+export const PostInputTitle = styled.input`
   padding: 5px;
   outline: none;
   border: 1px solid white;
@@ -121,7 +121,7 @@ const PostInputName = styled.input`
   border-radius: 4px;
 `;
 
-const PostContentArea = styled.textarea`
+export const PostContentArea = styled.textarea`
   resize: none;
   padding: 1rem 1rem 1.5rem;
   outline: none;

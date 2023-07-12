@@ -71,21 +71,24 @@ function Comments({ codata }) {
         )}
         {updateState && (
           <>
-            <div>
-              <label>수정내용</label>
-              <textarea
-                value={updateInputComment}
-                onChange={updateInputCommentHandler}
-              />
-            </div>
-            <Button
-              onClick={() => {
-                updateCommentHandler();
-                setUpdateState(!updateState);
-              }}
-            >
-              저장
-            </Button>
+            <UpdateCommentBox>
+              <div>
+                <CommentUpdateInput
+                  value={updateInputComment}
+                  onChange={updateInputCommentHandler}
+                />
+              </div>
+              <CommentUpdateButtonBox>
+                <Button
+                  onClick={() => {
+                    updateCommentHandler();
+                    setUpdateState(!updateState);
+                  }}
+                >
+                  저장
+                </Button>
+              </CommentUpdateButtonBox>
+            </UpdateCommentBox>
           </>
         )}
       </CommentBox>
@@ -118,4 +121,28 @@ const CommentButton = styled.button`
     color: #686868;
     cursor: pointer;
   }
+`;
+
+const UpdateCommentBox = styled.div`
+  display: flex;
+  padding: 10px;
+  width: 100%;
+  justify-content: space-between;
+`;
+
+const CommentUpdateInput = styled.textarea`
+  resize: none;
+  padding: 1rem 1rem 1.5rem;
+  outline: none;
+  border: 1px solid white;
+  margin-bottom: 8px;
+  width: 80%;
+  border-radius: 4px;
+  font-size: 1rem;
+  line-height: 1.75;
+`;
+
+const CommentUpdateButtonBox = styled.div`
+  display: flex;
+  justify-content: right;
 `;

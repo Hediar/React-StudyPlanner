@@ -10,6 +10,7 @@ import Comments from "../components/Comments";
 import useInput from "../hooks/useInput";
 import Inputcomment from "../components/Inputcomment";
 import useDelete from "../hooks/useDelete";
+import { PostContentArea, PostInputTitle } from "./Post";
 
 function DetailTodo() {
   const param = useParams();
@@ -120,11 +121,17 @@ function DetailTodo() {
           <>
             <div>
               <label>제목</label>
-              <input value={updateTitle} onChange={updateTitleHandler} />
+              <PostInputTitle
+                value={updateTitle}
+                onChange={updateTitleHandler}
+              />
             </div>
             <div>
               <label>내용</label>
-              <textarea value={updateContent} onChange={updateContentHandler} />
+              <PostContentArea
+                value={updateContent}
+                onChange={updateContentHandler}
+              />
             </div>
             <Button
               role={"update"}
