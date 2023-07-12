@@ -7,7 +7,7 @@ const signUp = async (user) => {
     user
   );
   //   console.log("회원가입", response);
-  return response;
+  return;
 };
 
 // 로그인
@@ -16,13 +16,16 @@ const signIn = async (user) => {
     `${process.env.REACT_APP_AUTAPI_URL}login`,
     user
   );
-  console.log("로그인", response);
+  console.log("로그인", response.data);
+  return;
 };
 
 // 유저 인증 확인
 const checkAut = async () => {
+  // 쿠키가 있고, 해당 쿠키를 인증해야 함
+
   const response = await axios.get(`${process.env.REACT_APP_AUTAPI_URL}user`);
-  return response;
+  return;
 };
 
 export { signUp, signIn, checkAut };

@@ -4,14 +4,14 @@ import useInput from "../hooks/useInput";
 import { styled } from "styled-components";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { useMutation, useQueryClient } from "react-query";
+import { useMutation } from "react-query";
 import { signUp } from "../api/users";
 import { useNavigate } from "react-router-dom";
 
 function SignUp() {
   const [id, onChangeIdHandler, setId] = useInput();
   const [pw, onChangePwHandler, setPw] = useInput();
-  const queryClient = useQueryClient();
+
   const navigate = useNavigate();
   const mutation = useMutation(signUp, {
     onSuccess: () => {},
