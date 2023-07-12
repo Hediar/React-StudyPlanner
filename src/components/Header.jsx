@@ -2,8 +2,10 @@ import React from "react";
 import { styled } from "styled-components";
 import { IoHomeSharp } from "react-icons/io5";
 import Button from "./Button";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
+  const navigate = useNavigate();
   return (
     <>
       <HeaderArea>
@@ -11,8 +13,8 @@ function Header() {
           <Button role="move" url={"/"} styleType={"icon"}>
             <IoHomeSharp size="30" />
           </Button>
-          {/* Lv 5 구현할 때 로그인 기능 만들기 
-           <Button>LogIn</Button> */}
+
+          <Button onClick={() => navigate("/signin")}>LogIn</Button>
         </HeaderNav>
         <HeaderMainArea>
           <h1>스터디</h1>
