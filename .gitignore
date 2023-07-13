@@ -24,4 +24,4 @@ yarn-debug.log*
 yarn-error.log*
 
 # db
-.db.json
+db.json

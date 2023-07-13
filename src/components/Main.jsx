@@ -3,10 +3,12 @@ import { styled } from "styled-components";
 import Button from "./Button";
 import CardList from "./CardList";
 import { BsFillPlusCircleFill } from "react-icons/bs";
+import Authorization from "./Authorization";
 
 function Main() {
   return (
     <>
+      <Authorization />
       <MainArea>
         <CardList />
       </MainArea>

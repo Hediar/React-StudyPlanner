@@ -7,6 +7,7 @@ import { styled } from "styled-components";
 import { useMutation, useQueryClient } from "react-query";
 import { addStudyList } from "../api/studyTodo";
 import { useNavigate } from "react-router-dom";
+import Authorization from "../components/Authorization";
 
 function Post() {
   const [title, onChangeTitleHandler, setTitle] = useInput();
@@ -53,6 +54,7 @@ function Post() {
   return (
     <>
       <Header />
+
       <PostBox>
         <h2>새 글 작성하기</h2>
         <div>
@@ -60,7 +62,7 @@ function Post() {
             value={title}
             onChange={onChangeTitleHandler}
             placeholder="제목"
-            maxlength="20"
+            maxLength="20"
           />
         </div>
         <div>
@@ -68,7 +70,7 @@ function Post() {
             value={writer}
             onChange={onChangeWriterHandler}
             placeholder="이름"
-            maxlength="10"
+            maxLength="10"
           />
         </div>
         <div>
@@ -105,7 +107,7 @@ const PostBox = styled.div`
   justify-content: center;
 `;
 
-const PostInputTitle = styled.input`
+export const PostInputTitle = styled.input`
   padding: 5px;
   outline: none;
   border: 1px solid white;
@@ -121,7 +123,7 @@ const PostInputName = styled.input`
   border-radius: 4px;
 `;
 
-const PostContentArea = styled.textarea`
+export const PostContentArea = styled.textarea`
   resize: none;
   padding: 1rem 1rem 1.5rem;
   outline: none;
