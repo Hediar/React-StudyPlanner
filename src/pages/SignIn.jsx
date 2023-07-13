@@ -10,6 +10,7 @@ import { useMutation } from "react-query";
 import { signIn } from "../api/users";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../redux/modules/currentuser";
+import Authorization from "../components/Authorization";
 
 function SignIn() {
   const [id, onChangeIdHandler, setId] = useInput();
@@ -58,6 +59,7 @@ function SignIn() {
   return (
     <div>
       <Header />
+      <Authorization />
       <SigninWrapper>
         <h1>로그인</h1>
         <SigninBox onSubmit={(e) => loginSubmitHandler(e)}>

@@ -2,12 +2,13 @@ import React, { useEffect } from "react";
 import { useMutation } from "react-query";
 import { checkAut } from "../api/users";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../redux/modules/currentuser";
 
 function Authorization() {
   const token = document.cookie.split("=")[1];
   const navigate = useNavigate();
+  const currentLoginState = useSelector((item) => item.currentuser.isLogin);
   const dispatch = useDispatch();
   const mutation = useMutation(checkAut, {
     onSuccess: (res) => {
@@ -34,7 +35,22 @@ function Authorization() {
     },
   });
 
+  const preventSign = () => {
+    console.log(currentLoginState);
+    if (token) {
+      alert("로그아웃 해주세요!");
+      navigate("/");
+    }
+  };
+
   useEffect(() => {
+    const currentUrl = window.location.href.split("/");
+    const url = currentUrl[currentUrl.length - 1];
+    console.log("url", url, token);
+    if (url === "signin" || url === "signup") {
+      preventSign();
+    }
+
     mutation.mutate(token);
   }, []);
 

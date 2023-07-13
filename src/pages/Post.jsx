@@ -7,6 +7,7 @@ import { styled } from "styled-components";
 import { useMutation, useQueryClient } from "react-query";
 import { addStudyList } from "../api/studyTodo";
 import { useNavigate } from "react-router-dom";
+import Authorization from "../components/Authorization";
 
 function Post() {
   const [title, onChangeTitleHandler, setTitle] = useInput();
@@ -53,6 +54,7 @@ function Post() {
   return (
     <>
       <Header />
+
       <PostBox>
         <h2>새 글 작성하기</h2>
         <div>

@@ -8,6 +8,7 @@ import { logoutUser } from "../redux/modules/currentuser";
 
 function Header() {
   const navigate = useNavigate();
+  const token = document.cookie.split("=")[1];
   const currentUser = useSelector((item) => item.currentuser);
   const [isLogin, setIsLogin] = useState(false);
   const dispatch = useDispatch();
@@ -21,7 +22,11 @@ function Header() {
   };
 
   useEffect(() => {
-    setIsLogin(currentUser.isLogin);
+    if (token.trim()) {
+      setIsLogin(true);
+    } else {
+      setIsLogin(false);
+    }
   }, [currentUser]);
 
   return (

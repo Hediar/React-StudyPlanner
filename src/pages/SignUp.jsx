@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import { useMutation } from "react-query";
 import { signUp } from "../api/users";
 import { useNavigate } from "react-router-dom";
+import Authorization from "../components/Authorization";
 
 function SignUp() {
   const [id, onChangeIdHandler, setId] = useInput();
@@ -42,6 +43,7 @@ function SignUp() {
   return (
     <div>
       <Header />
+      <Authorization />
       <SignupWrapper>
         <h1>회원가입</h1>
         <SignupBox>
