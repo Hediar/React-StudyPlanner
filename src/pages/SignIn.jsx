@@ -16,9 +16,25 @@ function SignIn() {
   const [pw, onChangePwHandler, setPw] = useInput();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const userId = useSelector((id) => id);
+  const userId = useSelector((user) => user.currentuser.id);
+
   const mutation = useMutation(signIn, {
-    onSuccess: () => {},
+    onSuccess: (data) => {
+      const token = data.token; // toekn 받음
+      // 쿠키 저장, 유효시간 설정
+      document.cookie = `token=${token}; max-age=600`;
+
+      alert("로그인 되었습니다!");
+      navigate("/");
+      console.log("로그인", token, userId);
+    },
+    onError: (error) => {
+      console.log("onerror", error);
+      if (error.response.status === 401) {
+        return alert(error.response.data.message);
+      }
+      return alert(error.message);
+    },
   });
   const loginSubmitHandler = (e) => {
     e.preventDefault();
@@ -34,25 +50,7 @@ function SignIn() {
     };
 
     mutation.mutate(loginUser);
-
-    if (mutation.isSuccess) {
-      const token = mutation.data.token; // toekn 받음
-
-      // 쿠키 저장, 유효시간 설정
-      document.cookie = `token=${token}; max-age=600`;
-      dispatch(setUser({ id: loginUser.id }));
-      alert("로그인 되었습니다!");
-      //   navigate("/");
-      console.log("로그인", token, userId);
-      return;
-    }
-
-    if (mutation.isError) {
-      if (mutation.error.response.status === 401) {
-        return alert(mutation.error.response.data.message);
-      }
-      return console.log(mutation.error.message);
-    }
+    // dispatch(setUser({ id: loginUser.id }));
   };
 
   return (
@@ -69,6 +67,7 @@ function SignIn() {
           <InputBox
             value={pw}
             onChange={onChangePwHandler}
+            type="password"
             placeholder="비밀번호"
           />
 

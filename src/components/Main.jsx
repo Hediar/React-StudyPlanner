@@ -5,6 +5,8 @@ import CardList from "./CardList";
 import { BsFillPlusCircleFill } from "react-icons/bs";
 
 function Main() {
+  const token = document.cookie.split("=")[1];
+  console.log("토큰있어?", token);
   return (
     <>
       <MainArea>

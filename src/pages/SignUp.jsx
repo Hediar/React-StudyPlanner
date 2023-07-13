@@ -14,7 +14,17 @@ function SignUp() {
 
   const navigate = useNavigate();
   const mutation = useMutation(signUp, {
-    onSuccess: () => {},
+    onSuccess: () => {
+      alert("회원가입 되었습니다!");
+      navigate("/signin");
+      return;
+    },
+    onError: (error) => {
+      if (error.response.status === 401) {
+        return alert(error.response.data.message);
+      }
+      return alert(error.message);
+    },
   });
 
   const signUpButtonHandler = () => {
@@ -28,18 +38,6 @@ function SignUp() {
       password: pw,
     };
     mutation.mutate(newUser);
-
-    if (mutation.isSuccess) {
-      alert("회원가입 되었습니다!");
-      navigate("/signin");
-      return;
-    }
-    if (mutation.isError) {
-      if (mutation.error.response.status === 401) {
-        return alert(mutation.error.response.data.message);
-      }
-      return console.log(mutation.error.message);
-    }
   };
   return (
     <div>
@@ -55,6 +53,7 @@ function SignUp() {
           <InputBox
             value={pw}
             onChange={onChangePwHandler}
+            type="password"
             placeholder="비밀번호"
           />
           <Button onClick={signUpButtonHandler}>회원가입</Button>
