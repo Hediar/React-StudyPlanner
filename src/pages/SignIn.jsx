@@ -9,20 +9,21 @@ import { InputBox } from "./SignUp";
 import { useMutation } from "react-query";
 import { signIn } from "../api/users";
 import { useDispatch, useSelector } from "react-redux";
-import { setUser } from "../redux/modules/currentuser";
+import { loginUser } from "../redux/modules/currentuser";
 
 function SignIn() {
   const [id, onChangeIdHandler, setId] = useInput();
   const [pw, onChangePwHandler, setPw] = useInput();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const userId = useSelector((user) => user.currentuser.id);
+  const userId = useSelector((user) => user.currentuser);
 
   const mutation = useMutation(signIn, {
     onSuccess: (data) => {
       const token = data.token; // toekn 받음
       // 쿠키 저장, 유효시간 설정
-      document.cookie = `token=${token}; max-age=600`;
+      // document.cookie = `token=${token}; max-age=600`;
+      document.cookie = `token=${token};`;
 
       alert("로그인 되었습니다!");
       navigate("/");
@@ -36,6 +37,7 @@ function SignIn() {
       return alert(error.message);
     },
   });
+
   const loginSubmitHandler = (e) => {
     e.preventDefault();
 
@@ -44,13 +46,13 @@ function SignIn() {
     } else if (!pw.trim()) {
       return alert("pw를 입력해주세요!");
     }
-    const loginUser = {
+    const user = {
       id: id,
       password: pw,
     };
 
-    mutation.mutate(loginUser);
-    // dispatch(setUser({ id: loginUser.id }));
+    mutation.mutate(user);
+    dispatch(loginUser(user.id));
   };
 
   return (

@@ -3,12 +3,12 @@ import { styled } from "styled-components";
 import Button from "./Button";
 import CardList from "./CardList";
 import { BsFillPlusCircleFill } from "react-icons/bs";
+import Authorization from "./Authorization";
 
 function Main() {
-  const token = document.cookie.split("=")[1];
-  console.log("토큰있어?", token);
   return (
     <>
+      <Authorization />
       <MainArea>
         <CardList />
       </MainArea>

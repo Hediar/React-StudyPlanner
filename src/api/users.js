@@ -22,11 +22,13 @@ const signIn = async (user) => {
 };
 
 // 유저 인증 확인
-const checkAut = async () => {
-  // 쿠키가 있고, 해당 쿠키를 인증해야 함
-
-  const response = await aut.get(`${process.env.REACT_APP_AUTAPI_URL}user`);
-  return;
+const checkAut = async (token) => {
+  const response = await aut.get("user", {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
+  return response;
 };
 
 export { signUp, signIn, checkAut };
