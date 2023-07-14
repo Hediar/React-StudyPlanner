@@ -11,6 +11,7 @@ import useInput from "../hooks/useInput";
 import Inputcomment from "../components/Inputcomment";
 import useDelete from "../hooks/useDelete";
 import { PostContentArea, PostInputTitle } from "./Post";
+import Authorization from "../components/Authorization";
 
 function DetailTodo() {
   const param = useParams();
@@ -72,6 +73,7 @@ function DetailTodo() {
   return (
     <>
       <Header />
+      <Authorization />
       <DetailBox>
         {!updateState && (
           <>
@@ -138,7 +140,6 @@ function DetailTodo() {
               update={newStudy}
               onClick={() => {
                 setUpdateState(!updateState);
-                console.log("저장");
               }}
             >
               저장

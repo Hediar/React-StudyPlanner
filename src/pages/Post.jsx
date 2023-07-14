@@ -54,7 +54,7 @@ function Post() {
   return (
     <>
       <Header />
-
+      <Authorization />
       <PostBox>
         <h2>새 글 작성하기</h2>
         <div>

@@ -18,7 +18,6 @@ function Header() {
     dispatch(logoutUser());
     setIsLogin(currentUser.isLogin);
     alert("로그아웃 되었습니다!");
-    console.log(currentUser);
   };
 
   useEffect(() => {
