@@ -4,9 +4,7 @@
 
 ## API 명세서
 
-**Users는 작성되지 않음**
-
-https://seryeongs-organization.gitbook.io/api-docs/reference/api-reference/comments
+https://seryeongs-organization.gitbook.io/api-docs/
 
 ## 기능
 
@@ -36,3 +34,11 @@ https://seryeongs-organization.gitbook.io/api-docs/reference/api-reference/comme
 6. 댓글
 
 댓글 Create, Read, Update, Delete가 가능합니다.
+
+7. 로그인
+
+로그인할 수 있습니다.
+
+8. 회원가입
+
+회원가입 할 수 있습니다.
