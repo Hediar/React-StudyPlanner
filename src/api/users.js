@@ -7,7 +7,6 @@ const signUp = async (user) => {
     `${process.env.REACT_APP_AUTAPI_URL}register`,
     user
   );
-  //   console.log("회원가입", response);
   return;
 };
 
@@ -17,7 +16,6 @@ const signIn = async (user) => {
     `${process.env.REACT_APP_AUTAPI_URL}login`,
     user
   );
-  console.log("로그인22", response.data);
   return response.data;
 };
 

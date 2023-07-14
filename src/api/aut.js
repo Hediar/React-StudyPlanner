@@ -12,8 +12,7 @@ instance.interceptors.response.use(
   function (error) {
     const msg = error.response.data.message;
     const status = error.response.status;
-    // console.log("응답 보내기 전", error);
-    // console.log(msg);
+
     /**
      * 만료 된 채로 요청 -> 401 에러 -> 메시지 출력, token 삭제 후 login page로 이동
      */

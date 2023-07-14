@@ -28,10 +28,8 @@ function SignIn() {
 
       alert("로그인 되었습니다!");
       navigate("/");
-      console.log("로그인", token, userId);
     },
     onError: (error) => {
-      console.log("onerror", error);
       if (error.response.status === 401) {
         return alert(error.response.data.message);
       }
